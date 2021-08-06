@@ -1,4 +1,4 @@
-class MessageService {
+class HelpService {
   constructor(bot, id) {
     this.bot = bot;
     this.id = id;
@@ -8,15 +8,15 @@ class MessageService {
     try {
       let message = 'I can help you with many functions.\n\nYou can control me by sending these commands:\n\n';
 
-      message += '<i>/bcrypt {text} - text to bcrypt hash</i>\n';
-      message += '<i>/binary {text} - text to binary</i>\n';
+      message += '<i>/bcrypt {text} - Text to bcrypt hash</i>\n';
+      message += '<i>/binary {text} - Text to binary</i>\n';
       message += '<i>/hex {text} - HEX to ASCII</i>\n';
-      message += '<i>/md5 {text} - text to MD5 hash</i>\n';
-      message += '<i>/short {url} - short url</i>\n';
-      message += '<i>/slug {text} - slug text</i>\n';
-      message += '<i>/uuid - generate UUID</i>\n';
-      message += '<i>/commands - command list</i>\n';
-      message += '<i>/help - help</i>\n';
+      message += '<i>/md5 {text} - Text to MD5 hash</i>\n';
+      message += '<i>/short {url} - Short url</i>\n';
+      message += '<i>/slug {text} - Slug text</i>\n';
+      message += '<i>/uuid - Generate UUID</i>\n';
+      message += '<i>/commands - Command list</i>\n';
+      message += '<i>/help - Help</i>\n';
 
       await this.bot.sendMessage(this.id, message, { parse_mode: 'HTML' });
     } catch (error) {
@@ -81,4 +81,4 @@ class MessageService {
   }
 }
 
-module.exports = MessageService;
+module.exports = HelpService;
