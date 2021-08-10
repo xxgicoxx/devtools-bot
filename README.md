@@ -24,16 +24,16 @@ Serverless Telegram bot for development tools.
 ### 1. Telegram
 ````
 # Create an Telegram bot
-Find @BotFather on Telegram, type /newbot and follow the instructions
+Find @BotFather on Telegram, type /newbot and follow the instructions.
 
 # Credentials
-Save your token from @BotFather
+Save your token from @BotFather.
 ````
 
 ### 2. Vercel Deploy
 ````
 # Account
-Create an Vercel account on https://vercel.com/
+Create an Vercel account on https://vercel.com/.
 
 # Install Vercel CLI
 npm install -g vercel
