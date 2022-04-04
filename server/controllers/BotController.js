@@ -20,11 +20,7 @@ class BotController {
 
   async handle() {
     try {
-      if (this.text === '/start' || this.text === '/commands') {
-        const helpService = new HelpService(this.bot, this.id);
-
-        await helpService.commands();
-      } if (this.text === '/help') {
+      if (this.text === '/start' || this.text === '/commands' || this.text === '/help') {
         const helpService = new HelpService(this.bot, this.id);
 
         await helpService.help();

@@ -1,24 +1,22 @@
 # DevTools Bot
 Serverless Telegram bot for development tools.
 
-![Bot](https://i.imgur.com/tJFSkD0.png)
+<p align="center">
+  <img src="assets/imgs/devtoolsbot.png">
+</p>
 
 # Features
-* /bcrypt [text] - Text to bcrypt hash
-* /binary [text] - Text to binary
-* /hex [text] - HEX to ASCII
-* /md5 [text] - Text to MD5 hash
-* /short [url] - Short url
-* /slug [text] - Slug text
+* /bcrypt `text` - Text to bcrypt hash
+* /binary `text` - Text to binary
+* /hex `text` - HEX to ASCII
+* /md5 `text` - Text to MD5 hash
+* /short `url` - Short url
+* /slug `text` - Slug text
 * /uuid - Generate UUID
-* /commands - Command list
 * /help - Help
 
 # Prerequisites
 * [Node.js](https://nodejs.org/en/)
-
-# Preview
-[@toolsdevbot](https://t.me/toolsdevbot)
 
 # Running
 ### 1. Telegram
@@ -53,6 +51,9 @@ TELEGRAM_TOKEN
 ````
 curl --location --request POST https://api.telegram.org/bot<YOUR-TELEGRAM-TOKEN>/setWebhook --header 'Content-type: application/json' --data '{"url": "https://project-name.username.vercel.app/api/webhook"}'
 ````
+
+# Built With
+* [Node.js](https://nodejs.org/en/)
 
 # Authors
 * [xxgicoxx](https://github.com/xxgicoxx/)
