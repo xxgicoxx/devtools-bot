@@ -30,7 +30,7 @@
     "md5": "^2.3.0",
     "node-telegram-bot-api": "^0.56.0",
     "slug.js": "^3.0.0",
-    "uuid": "^8.3.2"
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "eslint": "^8.12.0",
