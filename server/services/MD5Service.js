@@ -1,10 +1,12 @@
 const md5 = require('md5');
 
+const { constants } = require('../utils');
+
 class MD5Service {
   constructor(bot, id, text) {
     this.bot = bot;
     this.id = id;
-    this.text = text.replace('/md5 ', '');
+    this.text = text.replace(`${constants.COMMAND_MD5} `, '');
   }
 
   async md5() {
@@ -15,7 +17,7 @@ class MD5Service {
     } catch (error) {
       console.error(error);
 
-      await this.bot.sendMessage(this.id, 'Error, try again later');
+      await this.bot.sendMessage(this.id, constants.MESSAGE_ERROR_TRY_AGAIN);
     }
   }
 }

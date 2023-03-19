@@ -1,4 +1,5 @@
 const { telegramConfig } = require('../configs');
+const { constants } = require('../utils');
 
 const {
   BcryptService,
@@ -20,38 +21,48 @@ class BotController {
 
   async handle() {
     try {
-      if (this.text === '/start' || this.text === '/commands' || this.text === '/help') {
-        const helpService = new HelpService(this.bot, this.id);
-
-        await helpService.help();
-      } else if (this.text === '/uuid') {
-        const uUIDService = new UUIDService(this.bot, this.id, this.text);
-
-        await uUIDService.uuid();
-      } else if (/\/short (.+)/.test(this.text)) {
+      if (constants.COMMAND_SHORT_REGEX.test(this.text)) {
         const shortService = new ShortService(this.bot, this.id, this.text);
 
         await shortService.short();
-      } else if (/\/slug (.+)/.test(this.text)) {
+      } else if (constants.COMMAND_SLUG_REGEX.test(this.text)) {
         const slugService = new SlugService(this.bot, this.id, this.text);
 
         await slugService.slug();
-      } else if (/\/hex (.+)/.test(this.text)) {
+      } else if (constants.COMMAND_HEX_REGEX.test(this.text)) {
         const hexService = new HexService(this.bot, this.id, this.text);
 
         await hexService.hex();
-      } else if (/\/md5 (.+)/.test(this.text)) {
+      } else if (constants.COMMAND_MD5_REGEX.test(this.text)) {
         const mD5Service = new MD5Service(this.bot, this.id, this.text);
 
         await mD5Service.md5();
-      } else if (/\/bcrypt (.+)/.test(this.text)) {
+      } else if (constants.COMMAND_BCRYPT_REGEX.test(this.text)) {
         const bcryptService = new BcryptService(this.bot, this.id, this.text);
 
         await bcryptService.bcrypt();
-      } else if (/\/binary (.+)/.test(this.text)) {
+      } else if (constants.COMMAND_BINARY_REGEX.test(this.text)) {
         const binaryService = new BinaryService(this.bot, this.id, this.text);
 
         await binaryService.binary();
+      }
+
+      switch (this.text) {
+        case constants.COMMAND_START:
+        case constants.COMMAND_COMMANDS:
+        case constants.COMMAND_HELP: {
+          const helpService = new HelpService(this.bot, this.id);
+
+          await helpService.help();
+          break;
+        } case constants.COMMAND_UUID: {
+          const uUIDService = new UUIDService(this.bot, this.id, this.text);
+
+          await uUIDService.uuid();
+          break;
+        } default: {
+          break;
+        }
       }
     } catch (error) {
       console.error(error);

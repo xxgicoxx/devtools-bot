@@ -1,10 +1,12 @@
 const slug = require('slug.js');
 
+const { constants } = require('../utils');
+
 class SlugService {
   constructor(bot, id, text) {
     this.bot = bot;
     this.id = id;
-    this.text = text.replace('/slug ', '');
+    this.text = text.replace(`${constants.COMMAND_SLUG} `, '');
   }
 
   async slug() {
@@ -15,7 +17,7 @@ class SlugService {
     } catch (error) {
       console.error(error);
 
-      await this.bot.sendMessage(this.id, 'Error, try again later');
+      await this.bot.sendMessage(this.id, constants.MESSAGE_ERROR_TRY_AGAIN);
     }
   }
 }

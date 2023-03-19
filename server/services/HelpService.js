@@ -1,3 +1,5 @@
+const { constants } = require('../utils');
+
 class HelpService {
   constructor(bot, id) {
     this.bot = bot;
@@ -6,7 +8,6 @@ class HelpService {
 
   async help() {
     try {
-      let message = '<b>I can help you with many functions.\n\nYou can control me by sending these commands:\n\n</b>';
       const commands = [
         { command: '/bcrypt <b>{text}</b>', description: 'Text to bcrypt hash' },
         { command: '/binary <b>{text}</b>', description: 'Text to binary' },
@@ -17,16 +18,16 @@ class HelpService {
         { command: '/uuid', description: 'Generate UUID' },
         { command: '/help', description: 'Help' },
       ];
+      let message = '';
 
-      commands.forEach((command) => {
-        message += `${command.command} - ${command.description}\n`;
-      });
+      message += constants.MESSAGE_HELP;
+      message += commands.map((command) => `${command.command} - ${command.description}`).join('\n');
 
       await this.bot.sendMessage(this.id, message, { parse_mode: 'HTML' });
     } catch (error) {
       console.error(error);
 
-      await this.bot.sendMessage(this.id, 'Error, try again later');
+      await this.bot.sendMessage(this.id, constants.MESSAGE_ERROR_TRY_AGAIN);
     }
   }
 }

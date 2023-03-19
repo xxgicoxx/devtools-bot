@@ -1,10 +1,12 @@
 const arg = require('arg');
 
+const { constants } = require('../utils');
+
 class BinaryService {
   constructor(bot, id, text) {
     this.bot = bot;
     this.id = id;
-    this.text = text.replace('/binary ', '');
+    this.text = text.replace(`${constants.COMMAND_BINARY} `, '');
   }
 
   async binary() {
@@ -32,19 +34,21 @@ class BinaryService {
         });
 
         await this.bot.sendMessage(this.id, text);
-      } else {
-        let binary = '';
 
-        for (let i = 0; i < value.length; i += 1) {
-          binary += `${value[i].charCodeAt(0).toString(2)} `;
-        }
-
-        await this.bot.sendMessage(this.id, binary);
+        return;
       }
+
+      let binary = '';
+
+      for (let i = 0; i < value.length; i += 1) {
+        binary += `${value[i].charCodeAt(0).toString(2)} `;
+      }
+
+      await this.bot.sendMessage(this.id, binary);
     } catch (error) {
       console.error(error);
 
-      await this.bot.sendMessage(this.id, 'Error, try again later');
+      await this.bot.sendMessage(this.id, constants.MESSAGE_ERROR_TRY_AGAIN);
     }
   }
 }

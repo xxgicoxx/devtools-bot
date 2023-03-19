@@ -1,11 +1,12 @@
 const arg = require('arg');
 const bcrypt = require('bcryptjs');
+const { constants } = require('../utils');
 
 class BcryptService {
   constructor(bot, id, text) {
     this.bot = bot;
     this.id = id;
-    this.text = text.replace('/bcrypt ', '');
+    this.text = text.replace(`${constants.COMMAND_BCRYPT} `, '');
   }
 
   async bcrypt() {
@@ -33,15 +34,17 @@ class BcryptService {
         const result = await bcrypt.compare(value, hashText);
 
         await this.bot.sendMessage(this.id, result);
-      } else {
-        const hash = await bcrypt.hash(value, saltRounds);
 
-        await this.bot.sendMessage(this.id, hash);
+        return;
       }
+
+      const hash = await bcrypt.hash(value, saltRounds);
+
+      await this.bot.sendMessage(this.id, hash);
     } catch (error) {
       console.error(error);
 
-      await this.bot.sendMessage(this.id, 'Error, try again later');
+      await this.bot.sendMessage(this.id, constants.MESSAGE_ERROR_TRY_AGAIN);
     }
   }
 }

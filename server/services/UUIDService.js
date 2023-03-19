@@ -1,10 +1,12 @@
 const { v4: uuidv4 } = require('uuid');
 
+const { constants } = require('../utils');
+
 class UUIDService {
   constructor(bot, id, text) {
     this.bot = bot;
     this.id = id;
-    this.text = text.replace('/uuid ', '');
+    this.text = text.replace(`${constants.COMMAND_UUID} `, '');
   }
 
   async uuid() {
@@ -15,7 +17,7 @@ class UUIDService {
     } catch (error) {
       console.error(error);
 
-      await this.bot.sendMessage(this.id, 'Error, try again later');
+      await this.bot.sendMessage(this.id, constants.MESSAGE_ERROR_TRY_AGAIN);
     }
   }
 }

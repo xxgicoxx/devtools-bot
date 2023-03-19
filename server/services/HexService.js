@@ -1,10 +1,12 @@
 const arg = require('arg');
 
+const { constants } = require('../utils');
+
 class HexService {
   constructor(bot, id, text) {
     this.bot = bot;
     this.id = id;
-    this.text = text.replace('/hex ', '');
+    this.text = text.replace(`${constants.COMMAND_HEX} `, '');
   }
 
   async hex() {
@@ -26,15 +28,17 @@ class HexService {
         const ascii = Buffer.from(value, 'hex').toString('ascii');
 
         await this.bot.sendMessage(this.id, ascii);
-      } else {
-        const hex = Buffer.from(value, 'ascii').toString('hex');
 
-        await this.bot.sendMessage(this.id, hex);
+        return;
       }
+
+      const hex = Buffer.from(value, 'ascii').toString('hex');
+
+      await this.bot.sendMessage(this.id, hex);
     } catch (error) {
       console.error(error);
 
-      await this.bot.sendMessage(this.id, 'Error, try again later');
+      await this.bot.sendMessage(this.id, constants.MESSAGE_ERROR_TRY_AGAIN);
     }
   }
 }
